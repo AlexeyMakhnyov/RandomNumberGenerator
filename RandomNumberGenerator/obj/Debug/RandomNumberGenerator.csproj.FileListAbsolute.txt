@@ -1,0 +1,10 @@
+C:\Users\Alexey\source\repos\RandomNumberGenerator\RandomNumberGenerator\bin\Debug\RandomNumberGenerator.exe.config
+C:\Users\Alexey\source\repos\RandomNumberGenerator\RandomNumberGenerator\bin\Debug\RandomNumberGenerator.exe
+C:\Users\Alexey\source\repos\RandomNumberGenerator\RandomNumberGenerator\bin\Debug\RandomNumberGenerator.pdb
+C:\Users\Alexey\source\repos\RandomNumberGenerator\RandomNumberGenerator\obj\Debug\RandomNumberGenerator.csprojAssemblyReference.cache
+C:\Users\Alexey\source\repos\RandomNumberGenerator\RandomNumberGenerator\obj\Debug\RandomNumberGenerator.Form1.resources
+C:\Users\Alexey\source\repos\RandomNumberGenerator\RandomNumberGenerator\obj\Debug\RandomNumberGenerator.Properties.Resources.resources
+C:\Users\Alexey\source\repos\RandomNumberGenerator\RandomNumberGenerator\obj\Debug\RandomNumberGenerator.csproj.GenerateResource.cache
+C:\Users\Alexey\source\repos\RandomNumberGenerator\RandomNumberGenerator\obj\Debug\RandomNumberGenerator.csproj.CoreCompileInputs.cache
+C:\Users\Alexey\source\repos\RandomNumberGenerator\RandomNumberGenerator\obj\Debug\RandomNumberGenerator.exe
+C:\Users\Alexey\source\repos\RandomNumberGenerator\RandomNumberGenerator\obj\Debug\RandomNumberGenerator.pdb
