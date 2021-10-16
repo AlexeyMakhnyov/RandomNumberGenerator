@@ -15,7 +15,7 @@ namespace RandomNumberGenerator
             this.y = y;
         }
 
-        public double rand()
+        public double Rand()
         {
             double u = 453816693;
             double a = 16070093;

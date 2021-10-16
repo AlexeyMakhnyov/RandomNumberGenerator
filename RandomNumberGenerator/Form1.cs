@@ -12,60 +12,86 @@ namespace RandomNumberGenerator
 
         private void Generate_Click(object sender, EventArgs e)
         {
-            clearValue();
-            double initVal = Convert.ToDouble(initialValue.Text);
-            double[] mas = generateMas(initVal, 4000);
-            calcExpectedValue(mas);
-            calcDispersion(mas);
-            calcSecondMoment(mas);
-            calcThirdMoment(mas);
-            buildHistogram(mas);
-            buildFunctionChart(mas);
+            ClearValue();
+            double initVal;
+            if (initialValue.Text == "")
+                initVal = 0;
+            else
+                initVal = Convert.ToDouble(initialValue.Text);
+            double[] mas = GenerateMas(initVal, 4000);
+            CalcExpectedValue(mas);
+            CalcDispersion(mas);
+            CalcSecondMoment(mas);
+            CalcThirdMoment(mas);
+            CalcChiSquare(mas);
+            CalcStreakOfZero(mas);
+            CalcLambda(mas);
+            BuildHistogram(mas);
+            BuildFunctionChart(mas);
         }
 
-        private double[] generateMas(double initlVal, int n)
+        private double[] GenerateMas(double initlVal, int n)
         {
             double[] mas = new double[n];
-            MixedGenerator mGen = new MixedGenerator(initlVal);
+            //MixedGenerator mGen = new MixedGenerator(initlVal);
+            Random random = new Random();
             for (int i = 0; i < mas.Length; i++)
             {
-                mas[i] = mGen.rand();
+                mas[i] = SelectionMethod.Random(random);
                 Console.WriteLine(mas[i]);
             }
             return mas;
         }
 
-        private void calcExpectedValue(double[] mas)
+        private void CalcExpectedValue(double[] mas)
         {
-            expectedValue.Text += Math.Round(Service.expextedValue(mas) * 1000) / 1000;
+            expectedValue.Text += Math.Round(Service.CaclExpextedValue(mas) * 1000) / 1000;
         }
 
-        private void calcDispersion(double[] mas)
+        private void CalcDispersion(double[] mas)
         {
-            dispersionValue.Text += Math.Round(Service.dispersion(mas) * 1000) / 1000;
+            dispersionValue.Text += Math.Round(Service.CalcDispersion(mas) * 1000) / 1000;
         }
 
-        private void calcSecondMoment(double[] mas)
+        private void CalcSecondMoment(double[] mas)
         {
-            secondMoment.Text += Math.Round(Service.moment(mas, 2) *1000) / 1000;
+            secondMoment.Text += Math.Round(Service.CalcMoment(mas, 2) *1000) / 1000;
         }
 
-        private void calcThirdMoment(double[] mas)
+        private void CalcThirdMoment(double[] mas)
         {
-            thirdMoment.Text += Math.Round(Service.moment(mas, 3) * 1000) / 1000;
+            thirdMoment.Text += Math.Round(Service.CalcMoment(mas, 3) * 1000) / 1000;
         }
 
-        private void buildHistogram(double[] mas)
+        private void CalcChiSquare(double[] mas)
+        {
+            byte numOfIntervals = 40;
+            chiSquareValue.Text += Math.Round(Service.CalcChiSquare(mas, numOfIntervals) * 1000) / 1000;
+        }
+        private void CalcLambda(double[] mas)
+        {
+            lambdaValue.Text += Math.Round(Service.CalcLambda(mas) * 1000) / 1000;
+        }
+
+        private void CalcStreakOfZero(double[] mas)
+        {
+            double p = 0.5;
+            streakOfZeroValue.Text += Math.Round(Service.ComputeStreakOfZeros(mas, p) * 1000) / 1000;
+        }
+
+        private void BuildHistogram(double[] mas)
         {
             histogram.Series["frequency"].Points.Clear();
-            double h = 0.0625;
+            double h = (double)3.4 / 25; //1 / 16
             double lBorder = 0;
             double rBorder = h;
-            double[] p = new double[16];
+            double[] p = new double[25]; //16
+            double sum = 0;
             histogram.Series["frequency"].BorderWidth = 2;
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i < 25; i++) //16
             {
-                p[i] = Service.frequency(mas, lBorder, rBorder);
+                p[i] = Service.CalcFrequency(mas, lBorder, rBorder);
+                sum += p[i];
                 for (double j = lBorder; j <= rBorder; j += 0.0025)
                 {
                     if (j == lBorder || j == rBorder)
@@ -77,29 +103,27 @@ namespace RandomNumberGenerator
                     {
                         histogram.Series["frequency"].Points.AddXY(j, p[i]);
                     }
-                    Console.WriteLine(j);
+                    //Console.WriteLine(j);
                 }
                 lBorder += h;
                 rBorder += h;
             }
-            Console.WriteLine(rBorder);
-            histogram.Series["frequency"].Points.AddXY(1, p[p.Length - 1]);
-            histogram.Series["frequency"].Points.AddXY(1, 0);
+            histogram.Series["frequency"].Points.AddXY(3.4, p[p.Length - 1]); //1
+            histogram.Series["frequency"].Points.AddXY(3.4, 0); //1
+            Console.WriteLine("Sum = " + sum);
         }
 
-        private void buildFunctionChart(double[] mas)
+        private void BuildFunctionChart(double[] mas)
         {
             functionChart.Series["function"].Points.Clear();
-            double h = (double) 1 / 16;
+            double h = (double) 3.4 / 25; //1 / 16
             double lBorder = 0;
             double rBorder = lBorder + h;
             double sum = 0;
-            double[] f = new double[17];
-            f[0] = 0;
-            for (int i = 1; i <= 16; i++)
+            double[] f = new double[25]; //16
+            for (int i = 1; i < 25; i++) //16
             {
-                sum += Service.frequency(mas, lBorder, rBorder);
-                Console.WriteLine(sum);
+                sum += Service.CalcFrequency(mas, lBorder, rBorder);
                 f[i] = sum;
                 for (double j = lBorder; j < rBorder; j += 0.0025)
                 {
@@ -110,15 +134,18 @@ namespace RandomNumberGenerator
             }
         }
 
-        private void clearValue()
+        private void ClearValue()
         {
             expectedValue.Text = "Оценка математического \n ожидания: ";
             dispersionValue.Text = "Оценка дисперсии: ";
             secondMoment.Text = "Оценка 2-го момента: ";
             thirdMoment.Text = "Оценка 3-го момента: ";
+            chiSquareValue.Text = "Критерий Пирсона: ";
+            lambdaValue.Text = "Критерий Колмогорова: ";
+            streakOfZeroValue.Text = "Критерий серий(нулей): ";
         }
 
-        private void initialValue_KeyPress(object sender, KeyPressEventArgs e)
+        private void InitialValue_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
             if (!Char.IsDigit(number) && number != 8)
