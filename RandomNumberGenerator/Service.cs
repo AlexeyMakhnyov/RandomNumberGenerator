@@ -99,12 +99,23 @@ namespace RandomNumberGenerator
 
         private static double CalcFunk(double x)
         {
-            if (x <= 0)
+            //if (x <= 0)
+            //    return 0;
+            //else if (x > 0 && x < 1)
+            //    return x;
+            //else
+            //    return 1;
+            if (x < 0)
                 return 0;
-            else if (x > 0 && x < 1)
-                return x;
-            else
-                return 1;
+            else if (x >= 0 && x < 1)
+                return 0.15;
+            else if (x >= 1 && x < 2)
+                return 0.35;
+            else if (x >= 2 && x < 2.4)
+                return 0.875;
+            else if (x >= 2.4 && x < 3.4)
+                return 0.14;
+            else return 3.4;
         }
 
         public static double ComputeStreakOfZeros(double[] mas, double p)

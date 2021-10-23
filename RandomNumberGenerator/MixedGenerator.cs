@@ -19,7 +19,7 @@ namespace RandomNumberGenerator
         {
             double u = 453816693;
             double a = 16070093;
-            double m = Math.Pow(2, 63);
+            double m = Math.Pow(2, 31);
             y = (a * y + u) % m;
             return y / m;
         }

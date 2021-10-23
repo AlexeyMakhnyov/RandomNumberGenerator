@@ -37,6 +37,7 @@ namespace RandomNumberGenerator
             Random random = new Random();
             for (int i = 0; i < mas.Length; i++)
             {
+                //mas[i] = mGen.Rand();
                 mas[i] = SelectionMethod.Random(random);
                 Console.WriteLine(mas[i]);
             }
@@ -82,13 +83,13 @@ namespace RandomNumberGenerator
         private void BuildHistogram(double[] mas)
         {
             histogram.Series["frequency"].Points.Clear();
-            double h = (double)3.4 / 25; //1 / 16
+            double h = (double)3.4 / 25; //3.4 / 25
             double lBorder = 0;
             double rBorder = h;
-            double[] p = new double[25]; //16
+            double[] p = new double[25]; //25
             double sum = 0;
             histogram.Series["frequency"].BorderWidth = 2;
-            for (int i = 0; i < 25; i++) //16
+            for (int i = 0; i < 25; i++) //25
             {
                 p[i] = Service.CalcFrequency(mas, lBorder, rBorder);
                 sum += p[i];
@@ -108,20 +109,20 @@ namespace RandomNumberGenerator
                 lBorder += h;
                 rBorder += h;
             }
-            histogram.Series["frequency"].Points.AddXY(3.4, p[p.Length - 1]); //1
-            histogram.Series["frequency"].Points.AddXY(3.4, 0); //1
+            histogram.Series["frequency"].Points.AddXY(3.4, p[p.Length - 1]); //3.4
+            histogram.Series["frequency"].Points.AddXY(3.4, 0); //3.4
             Console.WriteLine("Sum = " + sum);
         }
 
         private void BuildFunctionChart(double[] mas)
         {
             functionChart.Series["function"].Points.Clear();
-            double h = (double) 3.4 / 25; //1 / 16
+            double h = (double) 3.4 / 25; //3.4 / 25
             double lBorder = 0;
             double rBorder = lBorder + h;
             double sum = 0;
-            double[] f = new double[25]; //16
-            for (int i = 1; i < 25; i++) //16
+            double[] f = new double[25]; //25
+            for (int i = 1; i < 25; i++) //25
             {
                 sum += Service.CalcFrequency(mas, lBorder, rBorder);
                 f[i] = sum;
@@ -140,9 +141,12 @@ namespace RandomNumberGenerator
             dispersionValue.Text = "Оценка дисперсии: ";
             secondMoment.Text = "Оценка 2-го момента: ";
             thirdMoment.Text = "Оценка 3-го момента: ";
+            //secondMoment.Visible = false;
+            //thirdMoment.Visible = false;
             chiSquareValue.Text = "Критерий Пирсона: ";
             lambdaValue.Text = "Критерий Колмогорова: ";
             streakOfZeroValue.Text = "Критерий серий(нулей): ";
+            //streakOfZeroValue.Visible = false;
         }
 
         private void InitialValue_KeyPress(object sender, KeyPressEventArgs e)

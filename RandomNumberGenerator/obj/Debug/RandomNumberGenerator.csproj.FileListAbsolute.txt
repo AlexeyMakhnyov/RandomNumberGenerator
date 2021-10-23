@@ -28,3 +28,13 @@ C:\Users\alexe\Desktop\Моделирование\RandomNumberGenerator\RandomNu
 C:\Users\alexe\Desktop\Моделирование\RandomNumberGenerator\RandomNumberGenerator\bin\Debug\RandomNumberGenerator.exe.config
 C:\Users\alexe\Desktop\Моделирование\RandomNumberGenerator\RandomNumberGenerator\bin\Debug\RandomNumberGenerator.exe
 C:\Users\alexe\Desktop\Моделирование\RandomNumberGenerator\RandomNumberGenerator\bin\Debug\RandomNumberGenerator.pdb
+C:\Users\Alexey\Desktop\RandomNumberGenerator\RandomNumberGenerator\bin\Debug\RandomNumberGenerator.exe.config
+C:\Users\Alexey\Desktop\RandomNumberGenerator\RandomNumberGenerator\bin\Debug\RandomNumberGenerator.exe
+C:\Users\Alexey\Desktop\RandomNumberGenerator\RandomNumberGenerator\bin\Debug\RandomNumberGenerator.pdb
+C:\Users\Alexey\Desktop\RandomNumberGenerator\RandomNumberGenerator\obj\Debug\RandomNumberGenerator.csprojAssemblyReference.cache
+C:\Users\Alexey\Desktop\RandomNumberGenerator\RandomNumberGenerator\obj\Debug\RandomNumberGenerator.Form1.resources
+C:\Users\Alexey\Desktop\RandomNumberGenerator\RandomNumberGenerator\obj\Debug\RandomNumberGenerator.Properties.Resources.resources
+C:\Users\Alexey\Desktop\RandomNumberGenerator\RandomNumberGenerator\obj\Debug\RandomNumberGenerator.csproj.GenerateResource.cache
+C:\Users\Alexey\Desktop\RandomNumberGenerator\RandomNumberGenerator\obj\Debug\RandomNumberGenerator.csproj.CoreCompileInputs.cache
+C:\Users\Alexey\Desktop\RandomNumberGenerator\RandomNumberGenerator\obj\Debug\RandomNumberGenerator.exe
+C:\Users\Alexey\Desktop\RandomNumberGenerator\RandomNumberGenerator\obj\Debug\RandomNumberGenerator.pdb
