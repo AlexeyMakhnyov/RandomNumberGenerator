@@ -42,7 +42,7 @@ namespace RandomNumberGenerator
 
         private static double[] CalcHits(double[] mas, byte k)
         {
-            double h = (double)1 / k;
+            double h = (double)3.4 / k;
             double lBorder = 0;
             double rBorder = lBorder + h;
             double[] hits = new double[k];
@@ -84,20 +84,22 @@ namespace RandomNumberGenerator
         {
             int n = mas.Length;
             double dMax = 0;
-            Array.Sort(mas);
+            double[] sort = mas;
+            Array.Sort(sort);
             for (int i = 0; i < n; i++) 
             {
-                double dp = Math.Abs((double)(i + 1) / n - CalcFunk(mas[i]));
-                double dm = Math.Abs(CalcFunk(mas[i]) - (double)i / n);
+                double dp = Math.Abs((double)(i + 1) / n - CalcFunk(sort[i]));
+                double dm = Math.Abs(CalcFunk(sort[i]) - (double)i / n);
                 if (dp > dMax)
                     dMax = dp;
                 else if (dm > dMax)
                     dMax = dm;
+                Console.WriteLine(dMax);
             }
             return dMax * Math.Sqrt(n);
         }
 
-        private static double CalcFunk(double x)
+        public static double CalcFunk(double x)
         {
             //if (x <= 0)
             //    return 0;
@@ -115,7 +117,8 @@ namespace RandomNumberGenerator
                 return 0.875;
             else if (x >= 2.4 && x < 3.4)
                 return 0.14;
-            else return 3.4;
+            else 
+                return 3.4;
         }
 
         public static double ComputeStreakOfZeros(double[] mas, double p)

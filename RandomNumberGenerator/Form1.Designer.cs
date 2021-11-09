@@ -35,6 +35,7 @@ namespace RandomNumberGenerator
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.initialValue = new System.Windows.Forms.TextBox();
             this.Generate = new System.Windows.Forms.Button();
             this.expectedValue = new System.Windows.Forms.Label();
@@ -63,6 +64,7 @@ namespace RandomNumberGenerator
             this.initialValue.Name = "initialValue";
             this.initialValue.Size = new System.Drawing.Size(100, 20);
             this.initialValue.TabIndex = 0;
+            this.initialValue.Visible = false;
             this.initialValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InitialValue_KeyPress);
             // 
             // Generate
@@ -158,7 +160,7 @@ namespace RandomNumberGenerator
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(562, 344);
+            this.tabPage2.Size = new System.Drawing.Size(550, 344);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Статистическая функция распределения";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -172,11 +174,16 @@ namespace RandomNumberGenerator
             this.functionChart.Location = new System.Drawing.Point(6, 38);
             this.functionChart.Name = "functionChart";
             series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series2.Legend = "Legend1";
-            series2.Name = "function";
+            series2.Name = "statistical function";
             series2.YValuesPerPoint = 3;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "function";
             this.functionChart.Series.Add(series2);
+            this.functionChart.Series.Add(series3);
             this.functionChart.Size = new System.Drawing.Size(550, 300);
             this.functionChart.TabIndex = 0;
             this.functionChart.Text = "functionChart";
@@ -190,6 +197,7 @@ namespace RandomNumberGenerator
             this.label1.Size = new System.Drawing.Size(125, 30);
             this.label1.TabIndex = 8;
             this.label1.Text = "Введите начальное \r\nзначение Y:";
+            this.label1.Visible = false;
             // 
             // chiSquareValue
             // 
@@ -200,6 +208,7 @@ namespace RandomNumberGenerator
             this.chiSquareValue.Size = new System.Drawing.Size(126, 15);
             this.chiSquareValue.TabIndex = 9;
             this.chiSquareValue.Text = "Критерий Пирсона:  ";
+            this.chiSquareValue.Visible = false;
             // 
             // lambdaValue
             // 
@@ -220,6 +229,7 @@ namespace RandomNumberGenerator
             this.streakOfZeroValue.Size = new System.Drawing.Size(151, 15);
             this.streakOfZeroValue.TabIndex = 11;
             this.streakOfZeroValue.Text = "Критерий серий(нулей):  ";
+            this.streakOfZeroValue.Visible = false;
             // 
             // Form1
             // 

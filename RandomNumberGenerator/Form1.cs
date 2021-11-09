@@ -18,16 +18,18 @@ namespace RandomNumberGenerator
                 initVal = 0;
             else
                 initVal = Convert.ToDouble(initialValue.Text);
-            double[] mas = GenerateMas(initVal, 4000);
+            double[] mas = GenerateMas(initVal, 3000);
+            BuildHistogram(mas);
+            BuildFunctionChart(mas);        
             CalcExpectedValue(mas);
             CalcDispersion(mas);
             CalcSecondMoment(mas);
             CalcThirdMoment(mas);
-            CalcChiSquare(mas);
-            CalcStreakOfZero(mas);
+            //CalcChiSquare(mas);
+            //CalcStreakOfZero(mas);
             CalcLambda(mas);
-            BuildHistogram(mas);
-            BuildFunctionChart(mas);
+            BuildFunction(mas);
+
         }
 
         private double[] GenerateMas(double initlVal, int n)
@@ -114,21 +116,38 @@ namespace RandomNumberGenerator
             Console.WriteLine("Sum = " + sum);
         }
 
-        private void BuildFunctionChart(double[] mas)
+        private void BuildFunction(double[] mas)
         {
             functionChart.Series["function"].Points.Clear();
+            functionChart.Series["function"].BorderWidth = 2;
+            functionChart.Series["function"].Points.AddXY(0, 0.15);
+            double x;
+            for (int i = 0; i < mas.Length; i++)
+            {
+                x = Math.Round(mas[i] * 10) / 10;
+                if (x > 3.4)
+                    break;
+                else
+                    functionChart.Series["function"].Points.AddXY(x, Service.CalcFunk(mas[i]));
+
+            }
+        }
+
+        private void BuildFunctionChart(double[] mas)
+        {
+            functionChart.Series["statistical function"].Points.Clear();
             double h = (double) 3.4 / 25; //3.4 / 25
             double lBorder = 0;
             double rBorder = lBorder + h;
             double sum = 0;
-            double[] f = new double[25]; //25
-            for (int i = 1; i < 25; i++) //25
+            double[] f = new double[26]; //26
+            for (int i = 1; i < 26; i++) //26
             {
                 sum += Service.CalcFrequency(mas, lBorder, rBorder);
                 f[i] = sum;
                 for (double j = lBorder; j < rBorder; j += 0.0025)
                 {
-                    functionChart.Series["function"].Points.AddXY(j, f[i]);
+                    functionChart.Series["statistical function"].Points.AddXY(j, f[i]);
                 }
                 lBorder += h;
                 rBorder += h;
